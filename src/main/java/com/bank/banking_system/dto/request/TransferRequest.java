@@ -16,7 +16,7 @@ public class TransferRequest
 
     @NotNull(message = "Destination account Id is required")
     @Min(value = 1, message = "Destination account Id should be positive")
-    private Long DestinationAccountId;
+    private Long destinationAccountId;
 
     @NotNull(message = "Amount is required")
     @DecimalMin(value = "0.0", inclusive = false, message = "Amount must be greater then zero")

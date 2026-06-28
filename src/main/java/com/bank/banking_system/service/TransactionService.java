@@ -31,14 +31,15 @@ public class TransactionService
         Long sourceAccountId= request.getSourceAccountId();
         Long destinationAccountId= request.getDestinationAccountId();
 
+        if (request.getSourceAccountId().equals(request.getDestinationAccountId())) {
+            throw new SameAccountTransferException("Source and Destination account must be different");
+        }
+
         Account sourceAccount=accountRepository.findById(sourceAccountId)
                 .orElseThrow(()-> new AccountNotFoundException("Source account not found with Id: "+sourceAccountId));
         Account destinationAccount=accountRepository.findById(destinationAccountId)
                 .orElseThrow(()-> new AccountNotFoundException("Destination account not found with Id: "+destinationAccountId));
 
-        if (sourceAccount.getAccountNumber().equals(destinationAccount.getAccountNumber())){
-            throw new SameAccountTransferException("Source and Destination account must be different");
-        }
 
         if(!sourceAccount.isActive()){
             throw new AccountInactiveException("Source account is not active: "+sourceAccount.getStatus());
