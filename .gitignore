@@ -1,0 +1,13 @@
+# Compiled output
+target/
+
+# IntelliJ IDE files
+.idea/
+*.iml
+
+# Never push real config with passwords
+src/main/resources/application.properties
+
+# OS files
+.DS_Store
+Thumbs.db
